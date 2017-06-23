@@ -71,8 +71,16 @@ public @interface Singleton {}
 
 ## 如何使用
 
-### 声明依赖关系
+### 集成
 
+```
+compile 'com.google.dagger:dagger:2.11'
+annotationProcessor 'com.google.dagger:dagger-compiler:2.11'
+```
+
+
+### 声明依赖关系
+```
 class Thermosiphon implements Pump {
   private final Heater heater;
 
@@ -83,7 +91,7 @@ class Thermosiphon implements Pump {
 
   ...
 }
-
+```
 ### 满足依赖
 
 @Inject 不能在以下情况下使用
@@ -97,7 +105,7 @@ class Thermosiphon implements Pump {
 ### 构建依赖图
 @Inject和@Provides提供了依赖关系，
 通过@Component注解在一个接口类（如CoffeeShop），然后传递module类型给modules参数，Dagger2 将会根据约定生成一个完整的实现
-
+```
 @Component(modules = DripCoffeeModule.class)
 interface CoffeeShop {
   CoffeeMaker maker();
@@ -106,3 +114,6 @@ interface CoffeeShop {
 CoffeeShop coffeeShop = DaggerCoffeeShop.builder()
     .dripCoffeeModule(new DripCoffeeModule())
     .build();
+```
+
+## 特性
