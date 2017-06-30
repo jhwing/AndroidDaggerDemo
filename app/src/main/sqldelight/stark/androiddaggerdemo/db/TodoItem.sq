@@ -1,0 +1,11 @@
+CREATE TABLE TodoItem (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    content TEXT,
+    ctime INTEGER
+);
+
+insertRow:
+insert into TodoItem (content,ctime) values (?,?);
+
+getAllData:
+select * from TodoItem order by ctime desc;
